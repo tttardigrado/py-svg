@@ -1,4 +1,4 @@
-from shapes.shapes import *
+from shapes import *
 class Canvas:
     def __init__(self, width=400,height=400, x=0,y=0):
         self.width = width
