@@ -62,7 +62,7 @@ if __name__ == "__main__":
     ca.noStroke()
     for i in range(10):
         ca.fill(f"rgb({i*25.5},{i*25.5},{i*25.5})")
-        ca.draw(ca.circle(i*5,i*5,5))
+        ca.draw(ca.rect(i*5,i*5,5,5))
 
     ca.stroke("#ff00ff")
     ca.draw(ca.line(0,0,100,100))
