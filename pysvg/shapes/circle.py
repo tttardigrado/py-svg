@@ -1,16 +1,15 @@
-from .inner import InnerShape
+from ..inner import InnerShape
 
-class Ellipse(InnerShape):
+class Circle(InnerShape):
 
-    def __init__(self,canvas, x=0, y=0, rx=0, ry=0):
-        super().__init__("ellipse", canvas)
+    def __init__(self,canvas, x:float=0, y:float=0, r:float=0):
+        super().__init__("circle", canvas)
         self.x = x
         self.y = y
-        self.rx = rx
-        self.ry = ry
+        self.r = r
         self.pathLength = None
 
-    def set_path_length(self,length):
+    def set_path_length(self,length:float):
         self.pathLength = length
 
     def no_path_length(self):
@@ -20,8 +19,7 @@ class Ellipse(InnerShape):
         info = f"<{self.tag}"
         info += f" cx='{self.x}'"
         info += f" cy='{self.y}'"
-        info += f" rx='{self.rx}'"
-        info += f" ry='{self.ry}'"
+        info += f" r='{self.r}'"
         info += f" pathLength='{self.pathLength}'"
 
         info = self.id_attribute(info)
@@ -30,3 +28,4 @@ class Ellipse(InnerShape):
         info = self.super_attribute(info)
         info = self.inner_attribute(info)
         return info
+

@@ -3,4 +3,4 @@ from .ellipse import Ellipse
 from .line import Line
 from .rect import Rect
 from .square import Square
-from .text import Text
+from .text import Text, TSpan

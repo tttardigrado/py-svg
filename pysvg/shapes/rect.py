@@ -1,10 +1,22 @@
-from .rect import Rect
+from ..inner import InnerShape
 
-class Square(Rect):
+class Rect(InnerShape):
 
-    def __init__(self,canvas, x=0, y=0, s=0, rx=0, ry=0):
-        super().__init__(canvas ,x, y, s, s, rx, ry)
+    def __init__(self,canvas, x:float=0, y:float=0, w:float=0, h:float=0, rx:float=0, ry:float=0):
+        super().__init__("rect", canvas)
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
+        self.rx = rx
+        self.ry = ry
+        self.pathLength = None
     
+    def set_path_length(self,length:float):
+        self.pathLength = length
+
+    def no_path_length(self):
+        self.pathLength = None
 
     def draw(self):
         info = f"<{self.tag}"
@@ -15,7 +27,7 @@ class Square(Rect):
         info += f" rx='{self.rx}'"
         info += f" ry='{self.ry}'"
         info += f" pathLength='{self.pathLength}'"
-
+        
         info = self.id_attribute(info)
         info = self.class_attribute(info)
         info = self.style_attribute(info)

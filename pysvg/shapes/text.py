@@ -1,7 +1,7 @@
-from .inner import InnerShape
+from ..inner import InnerShape
 
 class Text(InnerShape):
-    def __init__(self,canvas,text="", x=0, y=0, dx=0, dy=0):
+    def __init__(self,canvas,text:str="", x:float=0, y:float=0, dx:float=0, dy:float=0):
         super().__init__("text", canvas)
         self.inner += text
         self.x = x
@@ -12,22 +12,22 @@ class Text(InnerShape):
         self.adjust = "spacing"
         self.length = 0
 
-    def set_text(self,text):
+    def set_text(self,text:str):
         self.inner = text
 
-    def set_adjust(self, adjust):
+    def set_adjust(self, adjust:str):
         self.adjust = adjust
     
-    def set_length(self,length):
+    def set_length(self,length:float):
         self.length = length
 
-    def set_rotate(self,rotate):
+    def set_rotate(self,rotate:list):
         self.rotate = rotate
 
-    def add_rotate(self, number):
+    def add_rotate(self, number:float):
         self.rotate.append(number)
     
-    def rem_rotate(self, index):
+    def rem_rotate(self, index:int):
         del self.rotate[index]
 
     def draw(self):
@@ -55,6 +55,10 @@ class Text(InnerShape):
         return info
 
 class TSpan(Text):
-    def __init__(self, canvas, text='', x=0, y=0, dx=0, dy=0):
+    def __init__(self, canvas, text:str='', x:float=0, y:float=0, dx:float=0, dy:float=0):
         super().__init__(canvas, text=text, x=x, y=y, dx=dx, dy=dy)
         self.tag = "tspan"
+
+class TextPath:
+    """https://developer.mozilla.org/en-US/docs/Web/SVG/Element/textPath"""
+    pass
