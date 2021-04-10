@@ -5,12 +5,15 @@ class Canvas:
         self.height = height
         self.x = x
         self.y = y
-        self.inner = ""
+        self.inner = []
         self.fi = "#000000"
         self.st = "#000000"
         self.stW = 1
         self.fiO = 1
         self.stO = 1
+        self.defs = []
+        self.style = ""
+
 
     def stroke(self, st):
         self.st = st
@@ -32,12 +35,30 @@ class Canvas:
     
     def draw(self, shape):
         s = shape.draw()
-        self.inner += s
+        self.inner.append(s)
+    
+    def new_defs(self, shape):
+        s = shape.draw()
+        self.defs.append(s)
+    
+    def set_style(self, style:str):
+        self.style = style
+    
+        
 
     def render(self):
-        info = f"""<svg viewBox="{self.x} {self.y} {self.width} {self.height}">"""
-        info += self.inner
-        info += "</svg>"
+        info = f"""<svg viewBox="{self.x} {self.y} {self.width} {self.height}">\n"""
+        if self.defs:
+            info += "<defs>"
+            info += " ".join(self.defs)
+            info += "</defs>\n"
+        if self.style:
+            info += "<style>"
+            info += self.set_style
+            info += "</style>\n"        
+        if self.inner:
+            info += " ".join(self.inner)
+        info += "\n</svg>"
         return info
 
     def circle(self, x=0, y=0, r=0):
@@ -63,7 +84,7 @@ if __name__ == "__main__":
     for i in range(10):
         ca.fill(f"rgb({i*25.5},{i*25.5},{i*25.5})")
         ca.draw(ca.circle(i*5,i*5,5))
-
+    
     ca.stroke("#ff00ff")
     ca.draw(ca.line(0,0,100,100))
 

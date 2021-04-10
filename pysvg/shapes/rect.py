@@ -1,6 +1,6 @@
-from ..inner import InnerShape
+from ..transform import InnerTransform
 
-class Rect(InnerShape):
+class Rect(InnerTransform):
 
     def __init__(self,canvas, x:float=0, y:float=0, w:float=0, h:float=0, rx:float=0, ry:float=0):
         super().__init__("rect", canvas)
@@ -31,6 +31,7 @@ class Rect(InnerShape):
         info = self.id_attribute(info)
         info = self.class_attribute(info)
         info = self.style_attribute(info)
+        info = self.transform_attribute(info)
         info = self.super_attribute(info)
         info = self.inner_attribute(info)
         return info

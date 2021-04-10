@@ -1,9 +1,9 @@
-from ..inner import InnerShape
+from ..transform import InnerTransform
 
-class Text(InnerShape):
+class Text(InnerTransform):
     def __init__(self,canvas,text:str="", x:float=0, y:float=0, dx:float=0, dy:float=0):
         super().__init__("text", canvas)
-        self.inner += text
+        self.inner = [text]
         self.x = x
         self.y = y
         self.dx = dx
@@ -11,9 +11,13 @@ class Text(InnerShape):
         self.rotate = []
         self.adjust = "spacing"
         self.length = 0
+        self.anchor = "start"
+
+    def set_anchor(self,keyword:str):
+        self.anchor = keyword
 
     def set_text(self,text:str):
-        self.inner = text
+        self.inner = [text]
 
     def set_adjust(self, adjust:str):
         self.adjust = adjust
@@ -43,13 +47,15 @@ class Text(InnerShape):
         if self.length:
             info += f""" textLength='{self.length}'' """
         
-        info += f""" lengthAdjust='{self.adjust}' """
+        if self.anchor != "start":
+            info += f""" text-anchor="{self.anchor}" """
 
-        self.inner = [self.text]
+        info += f""" lengthAdjust='{self.adjust}' """
 
         info = self.id_attribute(info)
         info = self.class_attribute(info)
         info = self.style_attribute(info)
+        info = self.transform_attribute(info)
         info = self.super_attribute(info)
         info = self.inner_attribute(info)
         return info
@@ -59,11 +65,11 @@ class TSpan(Text):
         super().__init__(canvas, text=text, x=x, y=y, dx=dx, dy=dy)
         self.tag = "tspan"
 
-class TextPath(InnerShape):
+class TextPath(InnerTransform):
     """https://developer.mozilla.org/en-US/docs/Web/SVG/Element/textPath"""
     def __init__(self,canvas,text:str="", href:str=""):
         super().__init__("textPath", canvas)
-        self.inner += text
+        self.inner = [text]
         self.adjust = "spacing"
         self.length = 0
         self.href = href
@@ -71,9 +77,10 @@ class TextPath(InnerShape):
         self.side = "left"
         self.spacing = "exact"
         self.offset = 0
+        self.anchor = "start"
 
     def set_text(self,text:str):
-        self.inner = text
+        self.inner = [text]
 
     def set_adjust(self, keyword:str):
         self.adjust = adjust
@@ -116,10 +123,14 @@ class TextPath(InnerShape):
         if self.length:
             info += f""" textLength="{self.length}" """
         
+        if self.anchor != "start":
+            info += f""" text-anchor="{self.anchor}" """
+        
 
         info = self.id_attribute(info)
         info = self.class_attribute(info)
         info = self.style_attribute(info)
+        info = self.transform_attribute(info)
         info = self.super_attribute(info)
         info = self.inner_attribute(info)
         return info

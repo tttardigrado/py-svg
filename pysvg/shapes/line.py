@@ -1,6 +1,6 @@
-from ..inner import InnerShape
+from ..transform import InnerTransform
 
-class Line(InnerShape):
+class Line(InnerTransform):
 
     def __init__(self,canvas, x1:float=0, y1:float=0, x2:float=0, y2:float=0):
         super().__init__("line", canvas)
@@ -27,6 +27,7 @@ class Line(InnerShape):
         info = self.id_attribute(info)
         info = self.class_attribute(info)
         info = self.style_attribute(info)
+        info = self.transform_attribute(info)
         info = self.super_attribute(info)
         info += self.inner_attribute(info)
         return info

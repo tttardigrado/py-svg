@@ -1,7 +1,9 @@
-#TODO: defs g <symbol> <use> clipPath marker mask <style>
-#TODO: polygon path polyline
-#TODO: a foreignObject image
+#TODO: <symbol> clipPath marker mask
+
+#stroke-dash-array  stroke-linecap stroke-linejoin 
 
 # fonts
 # filter
 # amimation
+
+#MAYBE: a
