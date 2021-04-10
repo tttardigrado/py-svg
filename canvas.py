@@ -11,12 +11,28 @@ class Canvas:
         self.stW = 1
         self.fiO = 1
         self.stO = 1
+        self.stA = []
+        self.stOffset=0
+        self.stLineCap="butt"
+        self.stLineJoin="miter"
         self.defs = []
         self.style = ""
 
 
+    def linecap(self, keyword):
+        self.stLineCap = keyword
+
+    def lineJoin(self,keyword):
+        self.stLineJoin = keyword
+
     def stroke(self, st):
         self.st = st
+    
+    def strokeArray(self, arr:list):
+        self.stA = arr
+    
+    def strokeOffset(self, offset:float):
+        self.stOffset = offset
 
     def strokeOpacity(self, stO):
         self.stO = stO

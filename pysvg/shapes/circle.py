@@ -20,7 +20,8 @@ class Circle(InnerTransform):
         info += f" cx='{self.x}'"
         info += f" cy='{self.y}'"
         info += f" r='{self.r}'"
-        info += f" pathLength='{self.pathLength}'"
+        if self.pathLength:
+            info += f" pathLength='{self.pathLength}'"
 
         info = self.id_attribute(info)
         info = self.class_attribute(info)

@@ -1,6 +1,4 @@
-#TODO: <symbol> clipPath marker mask
-
-#stroke-dash-array  stroke-linecap stroke-linejoin 
+#TODO: <symbol> clipPath marker mask path
 
 # fonts
 # filter

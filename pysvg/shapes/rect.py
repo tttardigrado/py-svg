@@ -26,7 +26,8 @@ class Rect(InnerTransform):
         info += f" height='{self.h}'"
         info += f" rx='{self.rx}'"
         info += f" ry='{self.ry}'"
-        info += f" pathLength='{self.pathLength}'"
+        if self.pathLength:
+            info += f" pathLength='{self.pathLength}'"
         
         info = self.id_attribute(info)
         info = self.class_attribute(info)

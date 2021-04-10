@@ -10,14 +10,26 @@ class SVG:
         self.classes = []
         self.style = {}
 
-    def super_attribute(self,info:str):
-        info += f""" fill="{self.canvas.fi}" stroke="{self.canvas.st}" """
+    def super_attribute(self,info:str):  
+        # TODO:not all work everywhere fix it      
+        if self.canvas.fi != "#000000":
+            info += f""" fill="{self.canvas.fi}" """
+        if self.canvas.st != "#000000":
+            info += f""" stroke="{self.canvas.st}" """
         if self.canvas.fiO != 1:
             info += f""" fill-opacity="{self.canvas.fiO}" """
         if self.canvas.stO != 1:
             info += f""" stroke-opacity="{self.canvas.stO}" """
         if self.canvas.stW != 1:
             info += f""" stroke-weight="{self.canvas.stW}" """
+        if self.canvas.stA:
+            info += f""" stroke-dasharray="{''.join(self.canvas.stA)}" """
+        if self.canvas.stOffset:
+            info += f""" stroke-dashoffset="{self.canvas.stOffset}" """
+        if self.canvas.stLineJoin!="miter":
+            info += f""" stroke-linejoin="{self.canvas.stLineJoin}" """
+        if self.canvas.stLineCap!="butt":
+            info += f""" stroke-linecap="{self.canvas.stLineCap}" """
         return info
 
     # id

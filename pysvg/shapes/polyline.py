@@ -25,7 +25,9 @@ class PolyLine(InnerTransform):
         info = f"""<{self.tag} points=" """
         for point in self.points:
             info += f" {point[0]},{point[1]} "
-        info += f""" " pathLength='{self.pathLength}'"""
+        if self.pathLength:
+            info += f""" " pathLength='{self.pathLength}'"""
+        
         
         info = self.id_attribute(info)
         info = self.class_attribute(info)

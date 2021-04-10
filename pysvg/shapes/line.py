@@ -22,7 +22,8 @@ class Line(InnerTransform):
         info += f" y1='{self.y1}'"
         info += f" x2='{self.x2}'"
         info += f" y2='{self.y2}'"
-        info += f" pathLength='{self.pathLength}'"
+        if self.pathLength:
+            info += f" pathLength='{self.pathLength}'"
         
         info = self.id_attribute(info)
         info = self.class_attribute(info)
