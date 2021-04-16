@@ -10,27 +10,48 @@ class SVG:
         self.classes = []
         self.style = {}
 
-    def super_attribute(self,info:str):  
-        # TODO:not all work everywhere fix it      
+    def fill_attribute(self,info:str):
         if self.canvas.fi != "#000000":
             info += f""" fill="{self.canvas.fi}" """
-        if self.canvas.st != "#000000":
-            info += f""" stroke="{self.canvas.st}" """
         if self.canvas.fiO != 1:
             info += f""" fill-opacity="{self.canvas.fiO}" """
+        return info
+
+    def opacity_attribute(self,info:str):
+        if self.canvas.o != 1:
+            info += f""" opacity="{self.canvas.o}" """
+        return info
+    
+    def stroke_attribute(self,info:str):
+        if self.canvas.st != "#000000":
+            info += f""" stroke="{self.canvas.st}" """
         if self.canvas.stO != 1:
             info += f""" stroke-opacity="{self.canvas.stO}" """
         if self.canvas.stW != 1:
             info += f""" stroke-weight="{self.canvas.stW}" """
-        if self.canvas.stA:
-            info += f""" stroke-dasharray="{''.join(self.canvas.stA)}" """
-        if self.canvas.stOffset:
-            info += f""" stroke-dashoffset="{self.canvas.stOffset}" """
+        return info
+    
+    def linejoin_attribute(self,info:str):
         if self.canvas.stLineJoin!="miter":
             info += f""" stroke-linejoin="{self.canvas.stLineJoin}" """
+        return info
+    def linecap_attribute(self,info:str):
         if self.canvas.stLineCap!="butt":
             info += f""" stroke-linecap="{self.canvas.stLineCap}" """
         return info
+    def dash_attribute(self,info:str):
+        if self.canvas.stA:
+            info += f""" stroke-dasharray="{''.join(self.canvas.stA)}" """
+        if self.canvas.stOffset:
+            info += f""" stroke-dashoffset="{self.canvas.stOffset}" """        
+        return info
+    
+
+
+
+
+
+
 
     # id
     def set_id(self, new_id:str):

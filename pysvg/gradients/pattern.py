@@ -78,7 +78,11 @@ class Pattern(InnerTransform):
         info = self.id_attribute(info)
         info = self.class_attribute(info)
         info = self.style_attribute(info)
-        info = self.super_attribute(info)
+        info = self.fill_attribute(info)
+        info = self.stroke_attribute(info)
+        info = self.linecap_attribute(info)
+        info = self.linejoin_attribute(info)
+        info = self.dash_attribute(info)
         info = self.various_attribute(info)
         info = self.inner_attribute(info)
         return info

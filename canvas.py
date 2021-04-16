@@ -6,6 +6,7 @@ class Canvas:
         self.x = x
         self.y = y
         self.inner = []
+        self.o = 1
         self.fi = "#000000"
         self.st = "#000000"
         self.stW = 1
@@ -49,7 +50,7 @@ class Canvas:
     def noStroke(self):
         self.st = "none"
     
-    def draw(self, shape):
+    def d(self, shape):
         s = shape.draw()
         self.inner.append(s)
     
@@ -60,7 +61,8 @@ class Canvas:
     def set_style(self, style:str):
         self.style = style
     
-        
+    def set_opacity(self,opacity:float):
+        self.o = opacity    
 
     def render(self):
         info = f"""<svg viewBox="{self.x} {self.y} {self.width} {self.height}">\n"""
@@ -93,16 +95,22 @@ class Canvas:
     def line(self,x1=0,y1=0,x2=0,y2=0):
         l = Line(self, x1,y1,x2,y2)
         return l
+    def mask(self,x1=0,y1=0,x2=0,y2=0):
+        l = Mask(self, "d")
+        return l
 
 if __name__ == "__main__":
     ca = Canvas()
     ca.noStroke()
-    for i in range(10):
-        ca.fill(f"rgb({i*25.5},{i*25.5},{i*25.5})")
-        ca.draw(ca.circle(i*5,i*5,5))
+    m = ca.mask()
+    m.d(ca.circle(5,5,5))
+    ca.d(m)
+    #for i in range(10):
+        #ca.fill(f"rgb({i*25.5},{i*25.5},{i*25.5})")
+        #ca.d(ca.circle(i*5,i*5,5))
     
-    ca.stroke("#ff00ff")
-    ca.draw(ca.line(0,0,100,100))
+    #ca.stroke("#ff00ff")
+    #ca.d(ca.line(0,0,100,100))
 
     r = ca.render()
 

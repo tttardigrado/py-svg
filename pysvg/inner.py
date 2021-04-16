@@ -17,7 +17,7 @@ class InnerShape(SVG):
 
     def inner_attribute(self, info:str):
         if self.inner:
-            info += f""">{" ".join(self.inner)}</{self.tag}>'"""
+            info += f""">{" ".join(self.inner)}</{self.tag}>"""
         else:
             info += "/>"
         return info

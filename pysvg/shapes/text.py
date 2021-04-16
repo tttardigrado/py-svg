@@ -56,7 +56,12 @@ class Text(InnerTransform):
         info = self.class_attribute(info)
         info = self.style_attribute(info)
         info = self.transform_attribute(info)
-        info = self.super_attribute(info)
+        info = self.fill_attribute(info)
+        info = self.stroke_attribute(info)
+        info = self.linecap_attribute(info)
+        info = self.linejoin_attribute(info)
+        info = self.dash_attribute(info)
+        info = self.opacity_attribute(info)
         info = self.inner_attribute(info)
         return info
 
@@ -131,6 +136,11 @@ class TextPath(InnerTransform):
         info = self.class_attribute(info)
         info = self.style_attribute(info)
         info = self.transform_attribute(info)
-        info = self.super_attribute(info)
+        info = self.fill_attribute(info)
+        info = self.stroke_attribute(info)
+        info = self.linecap_attribute(info)
+        info = self.linejoin_attribute(info)
+        info = self.dash_attribute(info)
+        info = self.opacity_attribute(info)
         info = self.inner_attribute(info)
         return info

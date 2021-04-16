@@ -48,7 +48,7 @@ def atan(x:float,unit:str="deg"):
 def root(x:float, r:int):
     return x**(1/r)
 # sqrt
-def cbrt(x:float):
+def sqrt(x:float):
     return x**(1/2)
 # cbrt
 def cbrt(x:float):
@@ -71,4 +71,3 @@ def sign(x:float):
         return -1
     else:
         return 0
-

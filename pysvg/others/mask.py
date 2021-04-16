@@ -1,13 +1,24 @@
+## Not made
 from ..transform import InnerTransform
-
-class Use(InnerTransform):
-    def __init__(self,canvas,href:str, x:float=0,y:float=0,width:float=0,height:float=0):
-        super().__init__("use", canvas)
+class Mask(InnerTransform):
+    def __init__(self,canvas,x:float=0,y:float=0,width:float=0,height:float=0):
+        super().__init__("mask", canvas)
         self.href = href
         self.x = x
         self.y = y
         self.width = width
         self.height = height
+        self.contentUnits = "userSpaceOnUse"
+        self.maskUnits = "objectBoundingBox"
+
+
+
+
+    def d(self, shape):
+        s = shape.draw()
+        self.inner.append(s)
+
+    
     
     def draw(self):
         info = f"<{self.tag} "
@@ -19,8 +30,10 @@ class Use(InnerTransform):
             info += f' width="{self.width}"'
         if self.height:
             info += f' height="{self.height}"'
-        
-        info += f' href="{self.href}"'
+        if self.maskUnits != "objectBoundingBox":
+            info += f' maskUnits="{self.maskUnits}"'
+        if self.contentUnits != "userSpaceOnUse":
+            info += f' maskContentUnits="{self.contentUnits}"'
 
         info = self.id_attribute(info)
         info = self.class_attribute(info)

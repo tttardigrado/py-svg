@@ -19,7 +19,6 @@ class LinearGradient(Gradient):
         info = self.id_attribute(info)
         info = self.class_attribute(info)
         info = self.style_attribute(info)
-        info = self.super_attribute(info)
         info = self.gradient_attribute(info)
         info = self.inner_attribute(info)
         return info
