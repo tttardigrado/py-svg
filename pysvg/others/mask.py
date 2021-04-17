@@ -1,9 +1,8 @@
-## Not made
 from ..transform import InnerTransform
 class Mask(InnerTransform):
-    def __init__(self,canvas,x:float=0,y:float=0,width:float=0,height:float=0):
+    def __init__(self,canvas,_id:str,x:float=0,y:float=0,width:float=0,height:float=0):
         super().__init__("mask", canvas)
-        self.href = href
+        self.id = _id
         self.x = x
         self.y = y
         self.width = width
@@ -11,6 +10,12 @@ class Mask(InnerTransform):
         self.contentUnits = "userSpaceOnUse"
         self.maskUnits = "objectBoundingBox"
 
+
+    def set_contentUnits(self,keyword:str):
+        self.contentUnits = keyword
+    
+    def set_maskUnits(self,keyword:str):
+        self.maskUnits = keyword
 
 
 

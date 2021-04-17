@@ -1,6 +1,13 @@
-#TODO: clipPath marker g
-# fonts
-# filter
-# amimation
+# Priority
+   - [ ] marker
+   - [ ] clipPath attribute   
+   - [ ] mask attribute
 
-#MAYBE: a
+# Next
+   - [ ] fonts
+   - [ ] filter
+   - [ ] amimation
+
+
+# Maybe
+   - [ ] a

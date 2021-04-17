@@ -15,7 +15,7 @@ class Image(InnerTransform):
 
     def ratio_attribute(self, info:str):
         if self.ratio != ["xMidYMid","meet"]:
-            info += f""" href="{self.ratio[0]} {self.ratio[1]}" """
+            info += f""" preserveAspectRatio="{self.ratio[0]} {self.ratio[1]}" """
 
         return info
 

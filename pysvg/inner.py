@@ -15,6 +15,10 @@ class InnerShape(SVG):
     def rem_inner(self, index:int):
         del self.inner[index]
 
+    def d(self, shape):
+        s = shape.draw()
+        self.inner.append(s)
+
     def inner_attribute(self, info:str):
         if self.inner:
             info += f""">{" ".join(self.inner)}</{self.tag}>"""

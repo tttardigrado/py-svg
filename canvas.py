@@ -16,7 +16,6 @@ class Canvas:
         self.stOffset=0
         self.stLineCap="butt"
         self.stLineJoin="miter"
-        self.defs = []
         self.style = ""
 
 
@@ -54,9 +53,6 @@ class Canvas:
         s = shape.draw()
         self.inner.append(s)
     
-    def new_defs(self, shape):
-        s = shape.draw()
-        self.defs.append(s)
     
     def set_style(self, style:str):
         self.style = style
@@ -66,10 +62,6 @@ class Canvas:
 
     def render(self):
         info = f"""<svg viewBox="{self.x} {self.y} {self.width} {self.height}">\n"""
-        if self.defs:
-            info += "<defs>"
-            info += " ".join(self.defs)
-            info += "</defs>\n"
         if self.style:
             info += "<style>"
             info += self.set_style
