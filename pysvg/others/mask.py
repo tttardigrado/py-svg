@@ -50,5 +50,7 @@ class Mask(InnerTransform):
         info = self.linejoin_attribute(info)
         info = self.dash_attribute(info)
         info = self.opacity_attribute(info)
+        info = self.mask_attribute(info)
+        info = self.cp_attribute(info)
         info = self.inner_attribute(info)
         return info

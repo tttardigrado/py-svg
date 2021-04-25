@@ -1,13 +1,14 @@
-# Priority
+## Priority
    - [ ] marker
-   - [ ] clipPath attribute   
-   - [ ] mask attribute
+   - [ ] fill-rule
+   - [ ] clip rule
 
-# Next
+## Next
+
    - [ ] fonts
    - [ ] filter
    - [ ] amimation
 
 
-# Maybe
+## Maybe
    - [ ] a

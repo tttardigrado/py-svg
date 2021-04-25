@@ -33,6 +33,8 @@ class Image(InnerTransform):
         info = self.style_attribute(info)
         info = self.transform_attribute(info)
         info = self.opacity_attribute(info)
+        info = self.mask_attribute(info)
+        info = self.cp_attribute(info)
         info = self.inner_attribute(info)
         return info
 

@@ -10,6 +10,16 @@ class SVG:
         self.classes = []
         self.style = {}
 
+    def mask_attribute(self, info:str):
+        if self.canvas.ma:
+            info += f""" mask="{self.canvas.ma}" """
+        return info
+
+    def cp_attribute(self, info:str):
+        if self.canvas.cp:
+            info += f""" clip-path="{self.canvas.cp}" """
+        return info
+
     def fill_attribute(self,info:str):
         if self.canvas.fi != "#000000":
             info += f""" fill="{self.canvas.fi}" """

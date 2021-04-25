@@ -17,15 +17,37 @@ class Canvas:
         self.stLineCap="butt"
         self.stLineJoin="miter"
         self.style = ""
+        self.ma = ""
+        self.cp = ""
 
+    def set_clipPath(self, path:str, url:bool=True):
+        if url:
+            self.cp = f"url(#{path})"
+        else:
+            self.cp = path
 
-    def linecap(self, keyword):
+    def set_mask(self, mask:str, url:bool=True):
+        if url:
+            self.ma = f"url(#{mask})"
+        else:
+            self.ma = mask
+
+    def noClipPath(self):
+        self.cp = ""
+
+    def noMask(self):
+        self.ma = ""
+    
+    def strokeWeight(self, stW:float):
+        self.stW = stW
+
+    def linecap(self, keyword:str):
         self.stLineCap = keyword
 
-    def lineJoin(self,keyword):
+    def lineJoin(self,keyword:str):
         self.stLineJoin = keyword
 
-    def stroke(self, st):
+    def stroke(self, st:str):
         self.st = st
     
     def strokeArray(self, arr:list):
@@ -34,13 +56,16 @@ class Canvas:
     def strokeOffset(self, offset:float):
         self.stOffset = offset
 
-    def strokeOpacity(self, stO):
+    def strokeOpacity(self, stO:float):
         self.stO = stO
 
-    def fillOpacity(self, fiO):
+    def strokeOpacity(self, stO:float):
+        self.stO = stO
+
+    def fillOpacity(self, fiO:float):
         self.fiO = fiO
 
-    def fill(self, fi):
+    def fill(self, fi:str):
         self.fi = fi
 
     def noFill(self):
