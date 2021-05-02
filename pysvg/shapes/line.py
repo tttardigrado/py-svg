@@ -37,6 +37,7 @@ class Line(InnerTransform):
         info = self.opacity_attribute(info)
         info = self.mask_attribute(info)
         info = self.cp_attribute(info)
+        info = self.marker_attribute(info)
         info += self.inner_attribute(info)
         return info
 

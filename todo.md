@@ -1,14 +1,11 @@
 ## Priority
-   - [ ] marker
-   - [ ] fill-rule
-   - [ ] clip rule
+   - [ ] amimation
 
 ## Next
 
    - [ ] fonts
    - [ ] filter
-   - [ ] amimation
-
+   
 
 ## Maybe
    - [ ] a

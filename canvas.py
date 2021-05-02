@@ -19,6 +19,9 @@ class Canvas:
         self.style = ""
         self.ma = ""
         self.cp = ""
+        self.fillRule = "nonzero"
+        self.clipRule = "nonzero"
+        self.mk = ""
 
     def set_clipPath(self, path:str, url:bool=True):
         if url:
@@ -26,17 +29,31 @@ class Canvas:
         else:
             self.cp = path
 
+    def set_clipRule(self,keyword:str):
+        self.clipRule = keyword
+
     def set_mask(self, mask:str, url:bool=True):
         if url:
             self.ma = f"url(#{mask})"
         else:
             self.ma = mask
 
+    def set_marker(self, marker:str, url:bool=True):
+        if url:
+            self.mk = f"url(#{marker})"
+        else:
+            self.mk = marker
+
+    
+
     def noClipPath(self):
         self.cp = ""
 
     def noMask(self):
         self.ma = ""
+
+    def noMarker(self):
+        self.mk = ""
     
     def strokeWeight(self, stW:float):
         self.stW = stW
@@ -68,6 +85,9 @@ class Canvas:
     def fill(self, fi:str):
         self.fi = fi
 
+    def set_fillRule(self,keyword:str):
+        self.fillRule = keyword
+
     def noFill(self):
         self.fi = "none"
     
@@ -95,6 +115,9 @@ class Canvas:
             info += " ".join(self.inner)
         info += "\n</svg>"
         return info
+
+
+
 
     def circle(self, x=0, y=0, r=0):
         c = Circle(self,x,y,r)

@@ -80,5 +80,3 @@ class Marker(InnerTransform):
         info = self.cp_attribute(info)
         info = self.inner_attribute(info)
         return info
-
-#TODO: marker draw

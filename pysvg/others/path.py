@@ -1,7 +1,5 @@
 from ..transform import InnerTransform
 
-# TODO: PATH
-
 class Path(InnerTransform):
     def __init__(self, canvas, d:str=""):
         super().__init__("path", canvas)
@@ -67,6 +65,8 @@ class Path(InnerTransform):
     
     def d_end(self):
         self.d = " Z"
+
+    
     
     
     def set_path_length(self,length:float):
@@ -93,5 +93,6 @@ class Path(InnerTransform):
         info = self.opacity_attribute(info)
         info = self.mask_attribute(info)
         info = self.cp_attribute(info)
+        info = self.marker_attribute(info)
         info = self.inner_attribute(info)
         return info

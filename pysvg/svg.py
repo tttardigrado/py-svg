@@ -16,11 +16,15 @@ class SVG:
         return info
 
     def cp_attribute(self, info:str):
+        if self.canvas.clipRule:
+            info += f""" clip-rule="{self.canvas.clipRule}" """
         if self.canvas.cp:
             info += f""" clip-path="{self.canvas.cp}" """
         return info
 
     def fill_attribute(self,info:str):
+        if self.canvas.fillRule != "nonzero":
+            info += f""" fill-rule="{self.canvas.fillRule}" """
         if self.canvas.fi != "#000000":
             info += f""" fill="{self.canvas.fi}" """
         if self.canvas.fiO != 1:
@@ -57,7 +61,10 @@ class SVG:
         return info
     
 
-
+    def marker_attribute(self,info:str):
+        if self.canvas.mk:
+            info += f""" marker-start="{self.canvas.mk}" marker-mid="{self.canvas.mk}" marker-end="{self.canvas.mk}" """    
+        return info
 
 
 
@@ -107,3 +114,5 @@ class SVG:
         if self.classes:
             info += f""" class='{" ".join(self.classes)}'"""
         return info
+
+    
