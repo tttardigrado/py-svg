@@ -31,10 +31,6 @@ class Symbol(InnerTransform):
 
         return info
 
-    def d(self, shape):
-        s = shape.draw()
-        self.inner.append(s)
-    
     def draw(self):
         info = f"<{self.tag} "
 

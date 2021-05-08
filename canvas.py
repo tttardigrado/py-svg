@@ -44,7 +44,7 @@ class Canvas:
         else:
             self.mk = marker
 
-    
+
 
     def noClipPath(self):
         self.cp = ""
@@ -54,7 +54,7 @@ class Canvas:
 
     def noMarker(self):
         self.mk = ""
-    
+
     def strokeWeight(self, stW:float):
         self.stW = stW
 
@@ -66,10 +66,10 @@ class Canvas:
 
     def stroke(self, st:str):
         self.st = st
-    
+
     def strokeArray(self, arr:list):
         self.stA = arr
-    
+
     def strokeOffset(self, offset:float):
         self.stOffset = offset
 
@@ -90,27 +90,27 @@ class Canvas:
 
     def noFill(self):
         self.fi = "none"
-    
+
     def noStroke(self):
         self.st = "none"
-    
+
     def d(self, shape):
         s = shape.draw()
         self.inner.append(s)
-    
-    
+
+
     def set_style(self, style:str):
         self.style = style
-    
+
     def set_opacity(self,opacity:float):
-        self.o = opacity    
+        self.o = opacity
 
     def render(self):
         info = f"""<svg viewBox="{self.x} {self.y} {self.width} {self.height}">\n"""
         if self.style:
             info += "<style>"
             info += self.set_style
-            info += "</style>\n"        
+            info += "</style>\n"
         if self.inner:
             info += " ".join(self.inner)
         info += "\n</svg>"
@@ -148,7 +148,7 @@ if __name__ == "__main__":
     #for i in range(10):
         #ca.fill(f"rgb({i*25.5},{i*25.5},{i*25.5})")
         #ca.d(ca.circle(i*5,i*5,5))
-    
+
     #ca.stroke("#ff00ff")
     #ca.d(ca.line(0,0,100,100))
 

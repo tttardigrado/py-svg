@@ -1,11 +1,15 @@
 from ..transform import InnerTransform
-class Defs(InnerTransform):
-    def __init__(self,canvas, _id:str):
-        super().__init__("defs", canvas)
-        self.id = _id
 
+class G(InnerTransform):
+    def __init__(self,canvas, _id:str):
+        super().__init__("g", canvas)
+        self.id = _id
+    
     def draw(self):
         info = f"<{self.tag} "
+
+        info = self.viewBox_attribute(info)
+        info = self.ratio_attribute(info)
         info = self.id_attribute(info)
         info = self.class_attribute(info)
         info = self.style_attribute(info)
@@ -16,5 +20,7 @@ class Defs(InnerTransform):
         info = self.linejoin_attribute(info)
         info = self.dash_attribute(info)
         info = self.opacity_attribute(info)
+        info = self.mask_attribute(info)
+        info = self.cp_attribute(info)
         info = self.inner_attribute(info)
         return info

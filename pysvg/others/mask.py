@@ -19,10 +19,6 @@ class Mask(InnerTransform):
 
 
 
-    def d(self, shape):
-        s = shape.draw()
-        self.inner.append(s)
-
     
     
     def draw(self):

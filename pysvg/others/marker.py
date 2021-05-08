@@ -28,9 +28,6 @@ class Marker(InnerTransform):
 
         return info
 
-    def d(self, shape):
-        s = shape.draw()
-        self.inner.append(s)
 
     def set_units(self,keyword:str):
         self.units = keyword

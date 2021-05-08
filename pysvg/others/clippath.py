@@ -5,10 +5,6 @@ class ClipPath(InnerTransform):
         self.units = "userSpaceOnUse"
         self.id = _id
 
-    def d(self, shape):
-        s = shape.draw()
-        self.inner.append(s)
-
     def set_units(self,keyword:str):
         self.units = keyword
     
