@@ -1,9 +1,9 @@
 from ..transform import InnerTransform
 
 class Pattern(InnerTransform):
-    def __init__(self,canvas, x:float=0,y:float=0, width:float=0,height:float=0):
+    def __init__(self,canvas, href:str="", x:float=0,y:float=0, width:float=0,height:float=0):
         super().__init__("pattern", canvas)
-        self.href = None
+        self.href = href
         self.patternUnits = "objectBoundingBox"
         self.pcUnits = "objectBoundingBox"
         self.ratio = ["xMidYMid","meet"]

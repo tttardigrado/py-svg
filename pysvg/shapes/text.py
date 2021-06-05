@@ -73,7 +73,6 @@ class TSpan(Text):
         self.tag = "tspan"
 
 class TextPath(InnerTransform):
-    """https://developer.mozilla.org/en-US/docs/Web/SVG/Element/textPath"""
     def __init__(self,canvas,text:str="", href:str=""):
         super().__init__("textPath", canvas)
         self.inner = [text]

@@ -1,11 +1,14 @@
-from ..transform import InnerTransform
+from .animation import Animation
 
 
-class Path(InnerTransform):
+class MotionAnim(Animation):
     def __init__(self, canvas, d: str = ""):
-        super().__init__("path", canvas)
+        super().__init__("animateMotion", canvas)
+        self.rotate = 0
         self.d = d
-        self.pathLength = None
+
+    def set_rotate(self, value: str or float):
+        self.rotate = value
 
     def set_d(self, d: str):
         self.d = d
@@ -67,31 +70,17 @@ class Path(InnerTransform):
     def d_end(self):
         self.d += " Z"
 
-    def set_path_length(self, length: float):
-        self.pathLength = length
-
-    def no_path_length(self):
-        self.pathLength = None
-
     def draw(self):
-        info = f"<{self.tag} "
-        info = f""" d="{self.d}" """
-        if self.pathLength:
-            info += f" pathLength='{self.pathLength}'"
-
+        info = f"<{self.tag}"
+        if self.rotate:
+            info += f' rotate="{self.rotate}"'
+        if self.d:
+            info += f' path="{self.d}"'
+        info = self.values_attribute(info)
+        info = self.timing_attribute(info)
+        info = self.other_attributes(info)
         info = self.id_attribute(info)
         info = self.class_attribute(info)
         info = self.style_attribute(info)
-        info = self.transform_attribute(info)
-        info = self.fill_attribute(info)
-        info = self.stroke_attribute(info)
-        info = self.linecap_attribute(info)
-        info = self.linejoin_attribute(info)
-        info = self.dash_attribute(info)
-        info = self.opacity_attribute(info)
-        info = self.mask_attribute(info)
-        info = self.cp_attribute(info)
-        info = self.marker_attribute(info)
-        info = self.inner_attribute(info)
+        info += " />"
         return info
-

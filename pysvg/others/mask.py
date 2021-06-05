@@ -1,6 +1,8 @@
 from ..transform import InnerTransform
+
+
 class Mask(InnerTransform):
-    def __init__(self,canvas,_id:str,x:float=0,y:float=0,width:float=0,height:float=0):
+    def __init__(self, canvas, _id: str, x: float = 0, y: float = 0, width: float = 0, height: float = 0):
         super().__init__("mask", canvas)
         self.id = _id
         self.x = x
@@ -10,17 +12,12 @@ class Mask(InnerTransform):
         self.contentUnits = "userSpaceOnUse"
         self.maskUnits = "objectBoundingBox"
 
-
-    def set_contentUnits(self,keyword:str):
+    def set_contentUnits(self, keyword: str):
         self.contentUnits = keyword
-    
-    def set_maskUnits(self,keyword:str):
+
+    def set_maskUnits(self, keyword: str):
         self.maskUnits = keyword
 
-
-
-    
-    
     def draw(self):
         info = f"<{self.tag} "
         if self.x:
@@ -50,3 +47,4 @@ class Mask(InnerTransform):
         info = self.cp_attribute(info)
         info = self.inner_attribute(info)
         return info
+

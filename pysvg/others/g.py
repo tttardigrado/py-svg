@@ -1,15 +1,14 @@
 from ..transform import InnerTransform
 
+
 class G(InnerTransform):
-    def __init__(self,canvas, _id:str):
+    def __init__(self, canvas, _id: str):
         super().__init__("g", canvas)
         self.id = _id
-    
+
     def draw(self):
         info = f"<{self.tag} "
 
-        info = self.viewBox_attribute(info)
-        info = self.ratio_attribute(info)
         info = self.id_attribute(info)
         info = self.class_attribute(info)
         info = self.style_attribute(info)
@@ -24,3 +23,4 @@ class G(InnerTransform):
         info = self.cp_attribute(info)
         info = self.inner_attribute(info)
         return info
+

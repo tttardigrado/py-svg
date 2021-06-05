@@ -4,12 +4,13 @@ from typing import Any
 class Animation:
     """Base Animation class"""
 
-    def __init__(self, tag, canvas, ):
+    def __init__(self, tag, canvas):
         self.canvas = canvas
         self.tag = tag
         self.id = None
         self.classes = []
         self.style = {}
+        self.attribute = ""
 
         # props
         self.begin = []
@@ -28,6 +29,8 @@ class Animation:
         self.range = {"from": "",
                       "to": "",
                       "by": ""}
+        self.additive = "replace"
+        self.acumulate = "none"
 
     # props
 
@@ -179,6 +182,25 @@ class Animation:
         if self.range["by"]:
             info += f' by="{self.range["by"]}"'
         return info
+
+    # Other
+    def set_attribute(self, keyword: str):
+        self.attribute = keyword
+
+    def set_additive(self, keyword: str):
+        self.additive = keyword
+
+    def set_acumulate(self, keyword: str):
+        self.acumulate = keyword
+
+    def other_attributes(self, info: str):
+        if self.attribute:
+            info += f' attributeName="{self.attribute}"'
+        if self.additive != "replace":
+            info += f' additive="{self.additive}"'
+        if self.acumulate != "none":
+            info += f' acumulate="{self.acumulate}"'
+        return info
     # id
 
     def set_id(self, new_id: str):
@@ -221,4 +243,15 @@ class Animation:
     def class_attribute(self, info: str):
         if self.classes:
             info += f""" class='{" ".join(self.classes)}'"""
+        return info
+
+    def draw(self):
+        info = f"<{self.tag}"
+        info = self.values_attribute(info)
+        info = self.timing_attribute(info)
+        info = self.other_attributes(info)
+        info = self.id_attribute(info)
+        info = self.class_attribute(info)
+        info = self.style_attribute(info)
+        info += " />"
         return info
