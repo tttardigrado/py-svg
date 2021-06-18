@@ -1,6 +1,7 @@
 from pysvg import *
 import renderer
 
+
 class Canvas:
     def __init__(self, width=400, height=400, x=0, y=0):
         self.width = width
@@ -24,6 +25,7 @@ class Canvas:
         self.fillRule = "nonzero"
         self.clipRule = "nonzero"
         self.mk = ""
+        self.bg = "#000000"
 
     def set_clipPath(self, path: str, url: bool = True):
         if url:
@@ -101,8 +103,11 @@ class Canvas:
     def set_opacity(self, opacity: float):
         self.o = opacity
 
+    def background(self, bg: str):
+        self.bg = bg
+
     def render(self):
-        info = f"""<svg viewBox="{self.x} {self.y} {self.width} {self.height}">\n"""
+        info = f"""<svg viewBox="{self.x} {self.y} {self.width} {self.height}" style="background-color: {self.bg}">\n"""
         if self.style:
             info += "<style>"
             info += self.set_style
@@ -113,110 +118,120 @@ class Canvas:
         return info
 
     # Shapes
-    def circle(self, x:float=0, y:float=0, r:float=0):
+    def circle(self, x: float = 0, y: float = 0, r: float = 0):
         c = Circle(self, x, y, r)
         return c
 
-    def ellipse(self,x:float=0,y:float=0,rx:float=0,ry:float=0):
-        e = Ellipse(self,x,y,rx,ry)
+    def ellipse(self, x: float = 0, y: float = 0, rx: float = 0, ry: float = 0):
+        e = Ellipse(self, x, y, rx, ry)
         return e
 
-    def line(self, x1:float=0,y1:float=0,x2:float=100,y2:float=100):
-        l = Line(self, x1, y1,x2,y2)
+    def line(self, x1: float = 0, y1: float = 0, x2: float = 100, y2: float = 100):
+        l = Line(self, x1, y1, x2, y2)
         return l
-    
-    def polygon(self, points:list = []):
+
+    def polygon(self, points: list = []):
         p = Polygon(self, points)
         return p
-    
-    def polyline(self, points:list = []):
+
+    def polyline(self, points: list = []):
         p = PolyLine(self, points)
         return p
-    
-    def rect(self, x:float=0,y:float=0,w:float=0,h:float=0,rx:float=0,ry:float=0):
-        r = Rect(self, x,y,w,h,rx,ry)
+
+    def rect(self, x: float = 0, y: float = 0, w: float = 0, h: float = 0, rx: float = 0, ry: float = 0):
+        r = Rect(self, x, y, w, h, rx, ry)
         return r
-    def square(self, x:float=0,y:float=0,s:float=0,rx:float=0,ry:float=0):
-        s = Square(self, x,y,s,rx,ry)
+
+    def square(self, x: float = 0, y: float = 0, s: float = 0, rx: float = 0, ry: float = 0):
+        s = Square(self, x, y, s, rx, ry)
         return s
-    def text(self, t:str="", x:float=0,y:float=0,dx:float=0,dy:float=0):
-        te = Text(self, t, x,y,dx,dy)
+
+    def text(self, t: str = "", x: float = 0, y: float = 0, dx: float = 0, dy: float = 0):
+        te = Text(self, t, x, y, dx, dy)
         return te
-    def tspan(self,t:str="",x:float=0,y:float=0,dx:float=0,dy:float=0):
-        ts = TSpan(self, t,x,y,dx,dy)
+
+    def tspan(self, t: str = "", x: float = 0, y: float = 0, dx: float = 0, dy: float = 0):
+        ts = TSpan(self, t, x, y, dx, dy)
         return ts
-    def tpath(self, t:str="", href:str=""):
-        tp = TextPath(self, t,href)
+
+    def tpath(self, t: str = "", href: str = ""):
+        tp = TextPath(self, t, href)
         return tp
 
     # Others
-    def clippath(self, _id:str=""):
-        c = ClipPath(self,_id)
+    def clippath(self, _id: str = ""):
+        c = ClipPath(self, _id)
         return c
-    
-    def defs(self,_id:str=""):
+
+    def defs(self, _id: str = ""):
         d = Defs(self, _id)
         return d
-    def g(self, _id:str=""):
-        a = G(self,_id)
+
+    def g(self, _id: str = ""):
+        a = G(self, _id)
         return a
-    def image(self, href:str="", x:float=0,y:float=0,w:float=0,h:float=0):
-        i = Image(self, href,x,y,w,h)
+
+    def image(self, href: str = "", x: float = 0, y: float = 0, w: float = 0, h: float = 0):
+        i = Image(self, href, x, y, w, h)
         return i
-    def marker(self, _id:str="",w:float=0, h:float=0):
-        m = Marker(self, _id,h,w)
+
+    def marker(self, _id: str = "", w: float = 0, h: float = 0):
+        m = Marker(self, _id, h, w)
         return m
-    def mask(self, _id:str="", x:float=0,y:float=0,w:float=0,h:float=0):
-        m = Mask(self, _id, x,y,w,h)
+
+    def mask(self, _id: str = "", x: float = 0, y: float = 0, w: float = 0, h: float = 0):
+        m = Mask(self, _id, x, y, w, h)
         return m
-    def path(self, d:str=""):
+
+    def path(self, d: str = ""):
         p = Path(self, d)
         return p
-    def symbol(self, _id:str="", x:float=0,y:float=0,w:float=0,h:float=0,refx:float=0,refy:float=0):
-        s = Symbol(self, _id,x,y,w,h,refx,refy)
+
+    def symbol(self, _id: str = "", x: float = 0, y: float = 0, w: float = 0, h: float = 0, refx: float = 0, refy: float = 0):
+        s = Symbol(self, _id, x, y, w, h, refx, refy)
         return s
-    def use(self, href:str="", x:float=0,y:float=0,w:float=0,h:float=0):
-        u = Use(self, href,x,y,w,h)
+
+    def use(self, href: str = "", x: float = 0, y: float = 0, w: float = 0, h: float = 0):
+        u = Use(self, href, x, y, w, h)
+        return u
 
     # Gradients
-    def linearGrad(self, _id:str="", x1:float=0,y1:float=0,x2:float=0,y2:float=0):
-        l = LinearGradient(self, _id,x1,y1,x2,y2)
+    def linearGrad(self, _id: str = "", x1: float = 0, y1: float = 0, x2: float = 0, y2: float = 0):
+        l = LinearGradient(self, _id, x1, y1, x2, y2)
         return l
-    def radialGrad(self,_id:str="", cx:float=0,cy:float=0,r:float=0,fx:float=0,fy:float=0,fr:float=0):
-        r = RadialGradient(self,_id,cx,cy,r,fx,fy,fr)
-        return r
-    def pattern(self, href:str="", x:float=0,y:float=0,w:float=0,h:float=0):
-        p = Pattern(self, href, x,y,w,h)
-        return p
-    def stop(self, offset:float=0, color:str="#000000", opacity:float=1):
-        s = Stop(offset,color,opacity)
-        return s
-    
 
-    #anim
-    def motionAnim(self, d:str=""):
+    def radialGrad(self, _id: str = "", cx: float = 0, cy: float = 0, r: float = 0, fx: float = 0, fy: float = 0, fr: float = 0):
+        r = RadialGradient(self, _id, cx, cy, r, fx, fy, fr)
+        return r
+
+    def pattern(self, href: str = "", x: float = 0, y: float = 0, w: float = 0, h: float = 0):
+        p = Pattern(self, href, x, y, w, h)
+        return p
+
+    def stop(self, offset: float = 0, color: str = "#000000", opacity: float = 1):
+        s = Stop(offset, color, opacity)
+        return s
+
+    # anim
+    def motionAnim(self, d: str = ""):
         a = MotionAnim(self, d)
         return a
-    def tranAnim(self, _type:str=""):
-        a = TranAnim(self,_type)
+
+    def tranAnim(self, _type: str = ""):
+        a = TranAnim(self, _type)
         return a
-    def anim(self, attribute:str=""):
+
+    def anim(self, attribute: str = ""):
         a = Animation("animation", self)
         a.set_attribute(attribute)
         return a
 
+
 if __name__ == "__main__":
-    ca = Canvas()
-    ca.noStroke()
-    m = ca.mask()
-    m.d(ca.circle(5, 5, 5))
-    ca.d(m)
-    for i in range(10):
-        ca.fill(f"rgb({i*25.5},{i*25.5},{i*25.5})")
-        ca.d(ca.circle(i*5,i*5,5))
-
-    ca.stroke("#ff00ff")
-    ca.d(ca.line(0,0,100,100))
-
-    r = ca.render()
+    w, h = 1200, 1200
+    ca = Canvas(width=w, height=h)
+    ca.strokeWeight(50)
+    ca.linecap("round")
+    ca.stroke("#00ffff")
+    ca.d(ca.line(200, 600, 1000, 600))
     renderer.render([ca])
