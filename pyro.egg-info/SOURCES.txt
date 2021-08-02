@@ -1,0 +1,10 @@
+README.md
+setup.py
+pyro/__init__.py
+pyro/canvas.py
+pyro/main.py
+pyro/renderer.py
+pyro.egg-info/PKG-INFO
+pyro.egg-info/SOURCES.txt
+pyro.egg-info/dependency_links.txt
+pyro.egg-info/top_level.txt
